@@ -27,12 +27,13 @@
             clone: yes
             update: yes
         - name: Run build-deb.sh script
-          script: ./build-deb.sh
+          shell: ./build-deb.sh
           args:
             chdir: "{{ efs_utils_installation_folder }}"
+            creates: build/amazon-efs-utils*deb
         - name: Install efs-utils package
           apt:
-            name: ./efs-utils/build/amazon-efs-utils*deb
+            name: "{{ efs_utils_installation_folder }}/build/amazon-efs-utils*deb"
       when: ansible_distribution == "Ubuntu"
     - name: Create mount folder
       file:
