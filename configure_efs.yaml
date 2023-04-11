@@ -3,6 +3,8 @@
 - hosts: localhost
   connection: local
   become: true
+  vars:
+    mount_folder: "/mnt/efs"
   tasks:
     - name: Install EFS utils
       yum:
@@ -10,12 +12,12 @@
         state: latest
     - name: Create mount folder
       file:
-        path: /mnt/efs
+        path: "{{ mount_folder }}"
         state: directory
     - name: Mount EFS
       mount:
-        path: /mnt/efs
-        src: fs-0b15342a59a4e9b98
+        path: "{{ mount_folder }}"
+        src: "{{ lookup('env', 'EFS_ID') }}"
         fstype: efs
         opts: tls
         state: mounted
