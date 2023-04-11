@@ -7,37 +7,7 @@
     mount_folder: "/mnt/efs"
     efs_utils_folder: "/home/ubuntu/efs-utils/"
   tasks:
-    - name: Install EFS utils (Amazon)
-      yum:
-        name: amazon-efs-utils
-        update_cache: true
-        state: latest
-      when: ansible_distribution == "Amazon"
-    - name: Install EFS utils (Ubuntu)
-      block:
-        - name: Install binutils
-          apt:
-            name: binutils
-            update_cache: true
-            state: latest
-        - name: Clone efs-utils repo
-          git:
-            repo: https://github.com/aws/efs-utils
-            dest: "{{ efs_utils_folder }}"
-            clone: yes
-            update: yes
-        - name: Run build-deb.sh script
-          shell: ./build-deb.sh
-          args:
-            chdir: "{{ efs_utils_folder }}"
-            creates: build/amazon-efs-utils*deb
-        - name: Install efs-utils package
-          shell: apt -y install ./build/amazon-efs-utils*deb
-          args:
-            chdir: "{{ efs_utils_folder }}"
-          register: efs_utils_pkg_install
-          changed_when: '"Unpacking amazon-efs-utils" in efs_utils_pkg_install.stdout'
-      when: ansible_distribution == "Ubuntu"
+    - include_tasks: install_efs_utils_{{ ansible_dsitribution | lower }}.yaml
     - name: Create mount folder
       file:
         path: "{{ mount_folder }}"
