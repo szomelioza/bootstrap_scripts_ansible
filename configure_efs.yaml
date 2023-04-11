@@ -33,7 +33,7 @@
             creates: build/amazon-efs-utils*deb
         - name: Install efs-utils package
           apt:
-            name: "{{ efs_utils_installation_folder }}build/amazon-efs-utils*deb"
+            deb: "{{ efs_utils_installation_folder }}build/amazon-efs-utils*deb"
       when: ansible_distribution == "Ubuntu"
     - name: Create mount folder
       file:
