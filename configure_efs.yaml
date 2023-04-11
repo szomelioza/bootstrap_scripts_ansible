@@ -7,7 +7,7 @@
     mount_folder: "/mnt/efs"
     efs_utils_folder: "/home/ubuntu/efs-utils/"
   tasks:
-    - include_tasks: install_efs_utils_{{ ansible_distribution | lower }}.yaml
+    - include_tasks: tasks/install_efs_utils_{{ ansible_distribution | lower }}.yaml
     - name: Create mount folder
       file:
         path: "{{ mount_folder }}"
