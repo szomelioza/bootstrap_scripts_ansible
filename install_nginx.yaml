@@ -9,7 +9,7 @@
         name:
           - nginx
         update_cache: true
-      state: latest
+        state: latest
     - name: Run nginx
       service:
         name: nginx
