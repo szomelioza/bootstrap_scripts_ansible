@@ -6,10 +6,30 @@
   vars:
     mount_folder: "/mnt/efs"
   tasks:
-    - name: Install EFS utils
+    - name: Install EFS utils (Amazon)
       yum:
         name: amazon-efs-utils
+        update_cache: true
         state: latest
+      when: ansible_distribution == "Amazon"
+    - name: Install EFS utils (Ubuntu)
+      block:
+        - name: Install binutils
+          apt:
+            name: binutils
+            update_cache: true
+            state: latest
+        - name: Clone efs-utils repo
+          git:
+            repo: https://github.com/aws/efs-utils
+        - name: Run build-deb.sh script
+          script: ./build-deb.sh
+          args:
+            chdir: efs-utils
+        - name: Install efs-utils package
+          apt:
+            name: ./efs-utils/build/amazon-efs-utils*deb
+      when: ansible_distribution == "Ubuntu"
     - name: Create mount folder
       file:
         path: "{{ mount_folder }}"
