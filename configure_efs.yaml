@@ -35,6 +35,7 @@
           shell: apt -y install ./build/amazon-efs-utils*deb
           args:
             chdir: "{{ efs_utils_folder }}"
+          register: efs_utils_pkg_install
           changed_when: '"Unpacking amazon-efs-utils" in efs_utils_pkg_install.stdout'
       when: ansible_distribution == "Ubuntu"
     - name: Create mount folder
