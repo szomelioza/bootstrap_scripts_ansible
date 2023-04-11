@@ -22,8 +22,9 @@
         - name: Clone efs-utils repo
           git:
             repo: https://github.com/aws/efs-utils
-            dest: .
+            dest: ./
             clone: yes
+            update: yes
         - name: Run build-deb.sh script
           script: ./build-deb.sh
           args:
