@@ -5,6 +5,7 @@
   become: true
   vars:
     mount_folder: "/mnt/efs"
+    efs_utils_installation_folder: "/home/ubuntu/efs-utils/"
   tasks:
     - name: Install EFS utils (Amazon)
       yum:
@@ -22,13 +23,13 @@
         - name: Clone efs-utils repo
           git:
             repo: https://github.com/aws/efs-utils
-            dest: /home/ubuntu/efs-utils/
+            dest: "{{ efs_utils_installation_folder }}"
             clone: yes
             update: yes
         - name: Run build-deb.sh script
           script: ./build-deb.sh
           args:
-            chdir: efs-utils
+            chdir: "{{ efs_utils_installation_folder }}"
         - name: Install efs-utils package
           apt:
             name: ./efs-utils/build/amazon-efs-utils*deb
