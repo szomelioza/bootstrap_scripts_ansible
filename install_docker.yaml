@@ -9,6 +9,8 @@
       service:
         name: docker
         state: started
-    - name: Print current user
-      debug: 
-        msg: "CurrentUser: {{ lookup('env', 'USER') }}"
+    - name: Add user to docker group
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        groups: docker
+        append: yes
