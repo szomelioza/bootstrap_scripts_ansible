@@ -5,3 +5,10 @@
   become: true
   tasks:
     - include_tasks: tasks/docker/install_{{ ansible_distribution | lower }}.yaml
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+    - name: Print current user
+      debug: 
+        msg: "CurrentUser: {{ ansible_user_id }}"
