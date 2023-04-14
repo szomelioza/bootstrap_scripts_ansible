@@ -1,0 +1,12 @@
+---
+
+- name: Install nginx
+  package:
+    name:
+      - nginx
+    update_cache: true
+    state: latest
+- name: Run nginx
+  service:
+    name: nginx
+    state: started

@@ -1,0 +1,12 @@
+---
+
+- include_tasks: ./install_{{ ansible_distribution | lower }}.yaml
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+- name: Add user to docker group
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    groups: docker
+    append: yes

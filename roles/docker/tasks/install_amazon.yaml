@@ -1,0 +1,6 @@
+---
+
+- name: Install Docker (Amazon)
+  yum:
+    name: docker
+    state: latest

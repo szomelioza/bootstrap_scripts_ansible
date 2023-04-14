@@ -1,0 +1,6 @@
+---
+
+- name: Install EFS utils (Amazon)
+  yum:
+    name: amazon-efs-utils
+    state: latest

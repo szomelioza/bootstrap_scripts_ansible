@@ -1,0 +1,5 @@
+---
+
+- name: Update packages
+  pacakge:
+    update_cahce: true
