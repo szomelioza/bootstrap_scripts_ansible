@@ -1,3 +1,4 @@
-vars:
-  mount_folder: "/mnt/efs"
-  efs_utils_folder: "/home/ubuntu/efs-utils/"
+---
+
+mount_folder: "/mnt/efs"
+efs_utils_folder: "/home/ubuntu/efs-utils/"
