@@ -5,7 +5,6 @@
     - name: Install binutils
       apt:
         name: binutils
-        update_cache: true
         state: latest
     - name: Clone efs-utils repo
       git:
@@ -24,3 +23,7 @@
         chdir: "{{ efs_utils_folder }}"
       register: efs_utils_pkg_install
       changed_when: '"Unpacking amazon-efs-utils" in efs_utils_pkg_install.stdout'
+    - name: Delete efs-utils folder
+      file:
+        name: "{{ efs_utils_folder }}"
+        state: absent
