@@ -1,7 +1,0 @@
----
-
-- name: Install Docker (Amazon)
-  yum:
-    name: docker
-    state: latest
-    update_cache: true
