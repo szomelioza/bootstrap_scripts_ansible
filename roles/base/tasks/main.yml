@@ -2,4 +2,4 @@
 
 - name: Update packages
   package:
-    update_cahce: true
+    update_cache: true
