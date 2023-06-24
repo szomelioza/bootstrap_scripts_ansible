@@ -7,13 +7,7 @@
         name:
           - yum-utils
     - name: Add Terraform repo
-      yum_repository:
-        name: hashicorp
-        description: hashicorp repo
-        baseurl: https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-        enabled: yes
-        gpgcheck: yes
-        gpgkey: https://rpm.releases.hashicorp.com/gpg
+      shell: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
     - name: Install terraform
       yum:
         name:
