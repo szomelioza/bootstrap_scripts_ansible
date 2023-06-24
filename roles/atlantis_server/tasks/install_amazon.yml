@@ -9,6 +9,7 @@
     - name: Add Terraform repo
       yum_repository:
         name: hashicorp
+        description: hashicorp repo
         baseurl: https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
         enabled: yes
         gpgcheck: yes
