@@ -16,3 +16,6 @@
     - role: nginx
       tags:
         - nginx
+    - role: atlantis_server
+      tags:
+        - atlantis_server

@@ -1,0 +1,19 @@
+---
+
+- name: Install required packages
+  block:
+    - name: Install prerequisite packages
+      yum:
+        name:
+          - yum-utils
+    - name: Add Terraform repo
+      yum_repository:
+        name: terraform
+        description: hashicorp repo
+        baseurl: https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+    - name: Install terraform
+      yum:
+        name:
+          - terraform
+        update_cache: true
+
