@@ -6,7 +6,7 @@
 - name: Start ngrok
   shell: ngrok http --domain {{ atlantis_url }} 4141 1> /var/log/ngrok_all.log 2>&1 &
 - name: Start atlantis
-  shell: >
+  shell: |
     atlantis server
       --atlantis-url={{ atlantis_url }}
       --gh-user={{ github_username }}
