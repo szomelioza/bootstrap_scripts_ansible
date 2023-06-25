@@ -13,6 +13,11 @@
         name:
           - terraform
         update_cache: true
+    - name: Install atlantis
+      unarchive:
+        src: https://github.com/runatlantis/atlantis/releases/download/v0.24.3/atlantis_darwin_amd64.zip
+        dest: /usr/local/bin
+        remote_src: yes
     - name: Install ngrok
       unarchive:
         src: https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
