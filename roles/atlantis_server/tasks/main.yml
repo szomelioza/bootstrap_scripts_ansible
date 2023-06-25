@@ -4,4 +4,4 @@
 - name: Configure ngrok
   shell: ngrok config add-authtoken {{ ngrok_api_key }}
 - name: Start ngrok
-  shell: ngrok http 80 &
+  shell: ngrok http 80 --log stdout 1>/var/log/ngrok_all.log 2>&1 &
