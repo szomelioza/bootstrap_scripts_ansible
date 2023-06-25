@@ -15,7 +15,7 @@
         update_cache: true
     - name: Install atlantis
       unarchive:
-        src: https://github.com/runatlantis/atlantis/releases/download/v0.24.3/atlantis_darwin_amd64.zip
+        src: https://github.com/runatlantis/atlantis/releases/download/v0.24.3/atlantis_linux_amd64.zip
         dest: /usr/local/bin
         remote_src: yes
     - name: Install ngrok
