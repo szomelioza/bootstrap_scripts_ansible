@@ -7,9 +7,9 @@
   shell: ngrok http --domain {{ atlantis_url }} 4141 1> /var/log/ngrok_all.log 2>&1 &
 - name: Start atlantis
   shell: |
-    atlantis server
-      --atlantis-url={{ atlantis_url }}
-      --gh-user={{ github_username }}
-      --gh-token={{ github_token }}
-      --gh-webhook-secret={{ github_wh_secret }}
+    atlantis server \
+      --atlantis-url={{ atlantis_url }} \
+      --gh-user={{ github_username }} \
+      --gh-token={{ github_token }} \
+      --gh-webhook-secret={{ github_wh_secret }} \
       --repo-allowlist={{ repo_url }}
