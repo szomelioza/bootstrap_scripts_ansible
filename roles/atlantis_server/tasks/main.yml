@@ -1,0 +1,16 @@
+---
+
+- include_tasks: ./install_{{ ansible_distribution | lower }}.yml
+- name: Configure ngrok
+  shell: ngrok config add-authtoken {{ ngrok_api_key }}
+- name: Start ngrok
+  shell: ngrok http --domain {{ atlantis_url }} 4141 1>/var/log/ngrok_all.log 2>&1 &
+- name: Start atlantis
+  shell: |
+    atlantis server \
+      --atlantis-url={{ atlantis_url }} \
+      --gh-user={{ github_username }} \
+      --gh-token={{ github_token }} \
+      --gh-webhook-secret={{ github_wh_secret }} \
+      --repo-allowlist={{ repo_url }} \
+      1>/var/log/atlantis_all.log 2>&1 &
